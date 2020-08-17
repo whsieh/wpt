@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<script src="/resources/testdriver.js"></script>
+<script src="/resources/testdriver-actions.js"></script>
+<script src="/resources/testdriver-vendor.js"></script>
+<script src="/resources/testharness.js"></script>
+<script src="/resources/testharnessreport.js"></script>
+<script src="pointer-tests.js"></script>
+<style>
+iframe {
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+  <iframe src="http://{{hosts[][www1]}}:{{ports[http][0]}}/is-input-pending/blank.html"></iframe>
+  <p>Ensure that a parent frame can detect events on a cross-origin subframe with `pointer-events: none`.</p>
+  <script>
+    window.addEventListener('load', () => {
+      runPointerTests('can detect events on cross-origin iframe with pointer-events: none', 10, 10, true);
+    });
+  </script>
+</body>
+</html>
